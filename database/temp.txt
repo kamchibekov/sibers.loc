@@ -1,0 +1,12 @@
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (1, 0, 'kamchibekov', 'kamchibekov@github.com', 'admin123');
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (3, 0, 'mark', 'mark@gmail.com', '123456');
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (4, 0, 'einstain', 'einstain@gmail.com', '123456');
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (7, 0, '<!--adilet ', 'a@mail.ru', '123456');
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (8, 0, 'test', 'test@mail.ru', 'test123');
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (9, 0, 'test', 'test@mail.ru', 'test123');
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (10, 0, 'ajax_test', 'ajax@mail.ru', '123123');
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (11, 0, 'examination', 'e@mail.ru', '123123');
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (12, 0, 'exam2', 'w@mail.ru', '123123');
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (13, 0, 'new', 'new@mail.ru', '123123');
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (14, 0, 'putin', 'putin@mail.ru', '123123');
+INSERT INTO `user` (`id`, `country_id`, `username`, `email`, `password`) VALUES (15, 0, 'obama', 'obama@mail.ru', '123123');
