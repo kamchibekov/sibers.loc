@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Country;
 
 /**
  * SiteController implements the CRUD actions for User model.
@@ -35,22 +36,16 @@ class SiteController extends Controller
         $create_model = new User();
         $status = 0;
 
-        if ($create_model->load(Yii::$app->request->post()) && $create_model->validate()) {
+        if ($create_model->load(Yii::$app->request->post()) && $create_model->save()) {
             $create_model = new User();
             $status = 1;
-        }else{
-            $status = 0;
         }
-
-
 
         $dataProvider = new ActiveDataProvider([
             'query' => User::find(),
         ]);
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider, 'create_model' => $create_model,'status' => $status,
-        ]);
+        return $this->render('index', compact('dataProvider','create_model','status'));
     }
 
     /**
@@ -61,23 +56,6 @@ class SiteController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
-
-    /**
-     * Creates a new User model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     */
-    public function actionCreate()
-    {
-        $model = new User();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
     }
 
     /**
@@ -103,15 +81,30 @@ class SiteController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $delete_success = 0;
 
+        if (Yii::$app->request->isAjax) {
+            if ($this->deleteModel($id)) {
+                $this->deleteModel($id)->delete();
+                $delete_success = 200;
+            }
         return $this->redirect(['index']);
+
+        }else return $this->redirect(['index']);
+
     }
 
     /**
      * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      */
+
+    protected function deleteModel($id)
+    {
+        return User::findOne($id);
+
+    }
+
     protected function findModel($id)
     {
         if (($model = User::findOne($id)) !== null) {
