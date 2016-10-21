@@ -37,6 +37,7 @@ class User extends \yii\db\ActiveRecord
             [['email','username'], 'unique'],
             [['email'], 'string', 'max' => 100],
             [['password'],'string', 'min' => 6,'max' => 100],
+            [['password'],'hashPassword'],
             [['country_name'], 'setCountry'],
         ];
     }
@@ -64,9 +65,11 @@ class User extends \yii\db\ActiveRecord
         return $this->hasMany(Profile::className(), ['id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
+    public function hashPassword()
+    {
+        $this->password = Yii::$app->security->generatePasswordHash($this->password);
+    }
+
     public function getCountry()
     {
         return $this->hasOne(Country::className(), ['id' => 'country_id']);
